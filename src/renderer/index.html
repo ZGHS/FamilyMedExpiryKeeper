@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>家庭药品效期管家</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🏠 家庭药品效期管家</h1>
+      <div class="header-actions">
+        <button id="btnRefresh" class="btn btn-primary">🔄 刷新</button>
+        <button id="btnAdd" class="btn btn-success">➕ 添加药品</button>
+      </div>
+    </header>
+
+    <section class="stats">
+      <div class="stat-card">
+        <div class="stat-label">药品总数</div>
+        <div class="stat-value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card stat-expired">
+        <div class="stat-label">已过期</div>
+        <div class="stat-value" id="statExpired">0</div>
+      </div>
+      <div class="stat-card stat-warning">
+        <div class="stat-label">即将过期(≤7天)</div>
+        <div class="stat-value" id="statExpiring">0</div>
+      </div>
+      <div class="stat-card stat-normal">
+        <div class="stat-label">正常</div>
+        <div class="stat-value" id="statNormal">0</div>
+      </div>
+    </section>
+
+    <section class="table-section">
+      <table class="medicine-table">
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>药品名称</th>
+            <th>有效期</th>
+            <th>分类</th>
+            <th>数量</th>
+            <th>备注</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="medicineTableBody">
+          <tr>
+            <td colspan="8" class="empty-row">加载中...</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">添加药品</h2>
+        <span id="modalClose" class="modal-close">×</span>
+      </div>
+      <form id="medicineForm">
+        <input type="hidden" id="medicineId">
+        <div class="form-group">
+          <label for="medicineName">药品名称 *</label>
+          <input type="text" id="medicineName" required>
+        </div>
+        <div class="form-group">
+          <label for="medicineExpiry">有效期 *</label>
+          <input type="date" id="medicineExpiry" required>
+        </div>
+        <div class="form-group">
+          <label for="medicineCategory">分类</label>
+          <input type="text" id="medicineCategory" placeholder="如：感冒药、退烧药">
+        </div>
+        <div class="form-group">
+          <label for="medicineQuantity">数量</label>
+          <input type="number" id="medicineQuantity" min="0" value="0">
+        </div>
+        <div class="form-group">
+          <label for="medicineRemark">备注</label>
+          <input type="text" id="medicineRemark" placeholder="其他说明">
+        </div>
+        <div class="form-actions">
+          <button type="button" id="btnCancel" class="btn btn-secondary">取消</button>
+          <button type="submit" class="btn btn-primary">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
